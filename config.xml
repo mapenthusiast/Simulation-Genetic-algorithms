@@ -5,18 +5,18 @@
 
 	<!-- Network -->
 	<module name="network">
-		<param name="inputNetworkFile" value="F:\PSL\Documentte\Nistor\Educatie\Doctorat\Articole\UPB Bulletin\matsim_network_fixed.xml"/>
+		<param name="inputNetworkFile" value="your/path/to/file/matsim_network_fixed.xml"/>
 	</module>
 
 	<!-- Plans -->
 	<module name="plans">
-		<param name="inputPlansFile" value="F:\PSL\Documentte\Nistor\Educatie\Doctorat\Articole\UPB Bulletin\optimized_population.xml"/>
+		<param name="inputPlansFile" value="your/path/to/file/optimized_population.xml"/>
 	</module>
 
 	<!-- Controler -->
 	<module name="controller">
 		<!-- Output -->
-		<param name="outputDirectory" value="F:\PSL\Documentte\Nistor\Educatie\Doctorat\Articole\UPB Bulletin\output/"/>
+		<param name="outputDirectory" value="your/path/to/file/output/"/>
 
 		<!-- Iterations -->
 		<param name="firstIteration" value="0"/>
