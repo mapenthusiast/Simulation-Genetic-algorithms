@@ -5,7 +5,7 @@ import random
 from deap import base, creator, tools, algorithms
 import numpy as np
 
-### Step 1: Load Network Data ###
+# Load Network Data 
 def load_network(file_path):
     """Loads the network file and checks for required columns"""
     df = pd.read_csv(file_path, delimiter=";", compression="gzip")
@@ -16,7 +16,7 @@ def load_network(file_path):
 
     return df
 
-### Step 2: Load Travel Data ###
+# Load Travel Data
 def load_travel_data(file_path):
     """Loads travel data from previous simulation results"""
     df = pd.read_csv(file_path, delimiter=";", compression="gzip")
@@ -27,7 +27,7 @@ def load_travel_data(file_path):
 
     return df
 
-### Step 3: Load Population XML ###
+# Load Population XML 
 def load_population(file_path):
     """Loads agents from XML population file"""
     tree = ET.parse(file_path)
@@ -57,7 +57,7 @@ def convert_time_to_seconds(time_str):
 
     return hours * 3600 + minutes * 60 + seconds
 
-### Step 4: Fitness Function ###
+# Fitness Function
 def fitness(individual, agents, travel_data):
     """Evaluates the fitness by minimizing travel time and distance"""
     total_travel_time = 0
@@ -88,7 +88,7 @@ def fitness(individual, agents, travel_data):
 
     return (1 / total_travel_time, 1 / total_distance)  # Minimize both
 
-### Step 5: GA Setup ###
+# GA Setup 
 creator.create("FitnessMin", base.Fitness, weights=(-1.0, -1.0))  # Two objectives: time & distance
 creator.create("Individual", list, fitness=creator.FitnessMin)
 
@@ -110,7 +110,7 @@ toolbox.register("mate", tools.cxTwoPoint)
 toolbox.register("mutate", mutate)
 toolbox.register("select", tools.selTournament, tournsize=3)
 
-### Step 6: Run the Genetic Algorithm ###
+#Run the Genetic Algorithm
 def run_ga(population_file, travel_file, network_file, output_file="optimized_population.xml"):
     """Runs the genetic algorithm using real travel times and optimizes both time & route"""
     agents, tree = load_population(population_file)
@@ -133,6 +133,6 @@ def run_ga(population_file, travel_file, network_file, output_file="optimized_po
     tree.write(output_file)
     print(f"Optimized population saved as {output_file}")
 
-### Step 7: Run the GA ###
+# Run the GA
 if __name__ == "__main__":
     run_ga("generated_population_2.xml", "output_legs.csv_initial.gz", "output_links.csv.gz")
